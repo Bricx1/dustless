@@ -36,7 +36,7 @@ const Home = ({ user, onLogin }) => {
 
       {/* Hero Section */}
       <section id="home" className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 px-4 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Expert Ductless HVAC Solutions in GTA</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Expert Dustless HVAC Solutions in GTA</h1>
         <p className="text-lg md:text-xl mb-8">Energy-efficient mini split systems for year-round comfort. Installation, repair, and maintenance in Toronto, Mississauga & more.</p>
         <div className="flex justify-center space-x-4">
           <a href="#contact" className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-md font-semibold">Get Free Estimate</a>
@@ -46,7 +46,7 @@ const Home = ({ user, onLogin }) => {
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-white text-center">
-        <h2 className="text-3xl font-bold mb-12">Our Ductless HVAC Services</h2>
+        <h2 className="text-3xl font-bold mb-12">Our Dustless HVAC Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 max-w-6xl mx-auto">
           {[
             "Mini Split Installation",
@@ -68,8 +68,8 @@ const Home = ({ user, onLogin }) => {
       <section id="about" className="py-20 bg-gray-50 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-4">Why Choose Ductless Solutions GTA?</h2>
-            <p className="text-gray-700 mb-4">With years of experience delivering top-tier ductless HVAC solutions across the GTA, we provide reliable, energy-efficient comfort systems tailored to your needs. Trust in our professionalism, transparent pricing, and same-day service availability.</p>
+            <h2 className="text-3xl font-bold mb-4">Why Choose Dustless Solutions GTA?</h2>
+            <p className="text-gray-700 mb-4">With years of experience delivering top-tier dustless HVAC solutions across the GTA, we provide reliable, energy-efficient comfort systems tailored to your needs. Trust in our professionalism, transparent pricing, and same-day service availability.</p>
             <ul className="text-gray-600 list-disc list-inside">
               <li>Certified and trained technicians</li>
               <li>Affordable pricing & financing</li>
@@ -127,17 +127,17 @@ const Home = ({ user, onLogin }) => {
       <footer className="bg-gray-900 text-gray-300 py-10 text-sm">
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
           <div>
-            <h4 className="text-white font-semibold mb-2">Ductless Solutions GTA</h4>
+            <h4 className="text-white font-semibold mb-2">Dustless Solutions GTA</h4>
             <p>Reliable HVAC systems. Serving the Greater Toronto Area with expert service and care.</p>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Services</h4>
-            <ul className="space-y-1">
-              <li>Installation</li>
-              <li>Repair & Maintenance</li>
-              <li>24/7 Support</li>
-              <li>Commercial HVAC</li>
-            </ul>
+              <ul className="space-y-1">
+  <li><Link to="/installation" className="hover:text-white text-gray-400 hover:underline">Installation</Link></li>
+  <li><Link to="/repair" className="hover:text-white text-gray-400 hover:underline">Repair & Maintenance</Link></li>
+  <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">24/7 Support</a></li>
+  <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">Commercial HVAC</a></li>
+</ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
@@ -149,12 +149,12 @@ const Home = ({ user, onLogin }) => {
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Contact</h4>
-            <p>support@ductlesssolution.com</p>
+            <p>support@dustlesssolution.com</p>
             <p>+1 (416) 555-0123</p>
           </div>
         </div>
         <div className="text-center mt-8 text-gray-500">
-          © 2025 Ductless Solutions GTA. All rights reserved.
+          © 2025 Dustless Solutions GTA. All rights reserved.
         </div>
       </footer>
     </>
