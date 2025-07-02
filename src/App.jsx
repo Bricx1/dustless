@@ -11,7 +11,8 @@ import Settings from './pages/Forms/Settings';
 import Upgrades from './pages/Forms/Upgrades';
 
 import Maintenance from './pages/Forms/Maintenance';
-import ListofWorkers from './pages/Forms/EmployeeTracker';
+
+import EmployeeTracker from './pages/Forms/EmployeeTracker';
 
 const App = () => {
   const [user, setUser] = useState(() => {
@@ -43,7 +44,8 @@ const App = () => {
         <Route path="/services/repair" element={<Repair />} />
         <Route path="/services/upgrades" element={<Upgrades />} />
         <Route path="/services/maintenance" element={<Maintenance />} />
-        <Route path="/listofworkers" element={<ListofWorkers />} />
+        <Route path="/employeetracker" element={<EmployeeTracker />} />
+        
       </Routes>
     </Router>
   );
