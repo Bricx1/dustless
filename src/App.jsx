@@ -9,9 +9,7 @@ import DuctlessProfile from './pages/Forms/DuctlessProfile';
 import Repair from './pages/Forms/Repair';
 import Settings from './pages/Forms/Settings';
 import Upgrades from './pages/Forms/Upgrades';
-
 import Maintenance from './pages/Forms/Maintenance';
-
 import EmployeeTracker from './pages/Forms/EmployeeTracker';
 
 const App = () => {
