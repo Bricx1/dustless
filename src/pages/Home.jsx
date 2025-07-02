@@ -15,7 +15,8 @@ const Home = ({ user, onLogin }) => {
       <header className="bg-[#2d4a80] text-white px-6 py-4 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
-            <span className="text-white font-semibold">Ductless</span><span className="text-white font-extrabold">Solutions GTA</span>
+            <span className="text-white font-semibold">Ductless</span>
+            <span className="text-white font-extrabold">Solutions GTA</span>
           </div>
           <nav className="space-x-6 hidden md:flex text-sm">
             <a href="#home" className="hover:text-orange-400">Home</a>
@@ -25,22 +26,26 @@ const Home = ({ user, onLogin }) => {
             <Link to="/login" className="hover:text-orange-400">Login</Link>
             <Link to="/register" className="hover:text-orange-400">Register</Link>
           </nav>
-          <Link
-            to="#contact"
+          <a
+            href="#contact"
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-5 rounded-full text-sm ml-4"
           >
             Free Estimate
-          </Link>
+          </a>
         </div>
       </header>
 
       {/* Hero Section */}
       <section id="home" className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20 px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Expert Dustless HVAC Solutions in GTA</h1>
-        <p className="text-lg md:text-xl mb-8">Energy-efficient mini split systems for year-round comfort. Installation, repair, and maintenance in Toronto, Mississauga & more.</p>
+        <p className="text-lg md:text-xl mb-8">
+          Energy-efficient mini split systems for year-round comfort. Installation, repair, and maintenance in Toronto, Mississauga & more.
+        </p>
         <div className="flex justify-center space-x-4">
           <a href="#contact" className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-md font-semibold">Get Free Estimate</a>
-          <a href="tel:416-555-0123" className="border border-white py-2 px-6 rounded-md font-semibold hover:bg-white hover:text-purple-600">Call (416) 555-0123</a>
+          <a href="tel:416-555-0123" className="border border-white py-2 px-6 rounded-md font-semibold hover:bg-white hover:text-purple-600">
+            Call (416) 555-0123
+          </a>
         </div>
       </section>
 
@@ -69,7 +74,9 @@ const Home = ({ user, onLogin }) => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-4">Why Choose Dustless Solutions GTA?</h2>
-            <p className="text-gray-700 mb-4">With years of experience delivering top-tier dustless HVAC solutions across the GTA, we provide reliable, energy-efficient comfort systems tailored to your needs. Trust in our professionalism, transparent pricing, and same-day service availability.</p>
+            <p className="text-gray-700 mb-4">
+              With years of experience delivering top-tier dustless HVAC solutions across the GTA, we provide reliable, energy-efficient comfort systems tailored to your needs.
+            </p>
             <ul className="text-gray-600 list-disc list-inside">
               <li>Certified and trained technicians</li>
               <li>Affordable pricing & financing</li>
@@ -79,7 +86,6 @@ const Home = ({ user, onLogin }) => {
           <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl h-64 w-full"></div>
         </div>
 
-        {/* Stats */}
         <div className="flex justify-center gap-10 text-center mt-16">
           <div>
             <h3 className="text-3xl font-bold text-indigo-600">2000+</h3>
@@ -132,19 +138,19 @@ const Home = ({ user, onLogin }) => {
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Services</h4>
-              <ul className="space-y-1">
-  <li><Link to="/installation" className="hover:text-white text-gray-400 hover:underline">Installation</Link></li>
-  <li><Link to="/repair" className="hover:text-white text-gray-400 hover:underline">Repair & Maintenance</Link></li>
-  <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">24/7 Support</a></li>
-  <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">Commercial HVAC</a></li>
-</ul>
+            <ul className="space-y-1">
+              <li><Link to="/installation" className="hover:text-white text-gray-400 hover:underline">Installation</Link></li>
+              <li><Link to="/repair" className="hover:text-white text-gray-400 hover:underline">Repair & Maintenance</Link></li>
+              <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">24/7 Support</a></li>
+              <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">Commercial HVAC</a></li>
+            </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
             <ul className="space-y-1">
-              <li>About Us</li>
-              <li>Contact</li>
-              <li>Book Now</li>
+              <li><a href="#about" className="hover:text-white text-gray-400 hover:underline">About Us</a></li>
+              <li><a href="#contact" className="hover:text-white text-gray-400 hover:underline">Contact</a></li>
+              <li><Link to="/installation" className="hover:text-white text-gray-400 hover:underline">Book Now</Link></li>
             </ul>
           </div>
           <div>

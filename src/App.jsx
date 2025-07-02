@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/home" element={<Home user={user} onLogin={handleLogin} />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-        <Route path="/dashboard" element={user ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/" replace />} />
+         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/services/installation" element={<InstallationForm />} />
         <Route path="/MyProfile" element={<DuctlessProfile />} />
         <Route path="/settings" element={<Settings />} />
