@@ -11,7 +11,7 @@ import Settings from './pages/Forms/Settings';
 import Upgrades from './pages/Forms/Upgrades';
 
 import Maintenance from './pages/Forms/Maintenance';
-import ListofWorkers from './pages/Forms/ListofWorkers';
+import ListofWorkers from './pages/Forms/EmployeeTracker';
 
 const App = () => {
   const [user, setUser] = useState(() => {
