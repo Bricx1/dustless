@@ -10,8 +10,8 @@ const LoginForm = () => {
   const [notification, setNotification] = useState({ message: '', type: '', show: false });
 
   const validCredentials = {
-    admin: { email: 'admin@ductless.com', password: 'admin123' },
-    worker: { email: 'worker@ductless.com', password: 'worker123' },
+    admin: { email: 'Skhan@compassionatehhs.org', password: 'admin123' },
+    worker: { email: 'drsohail13@gmail.com', password: 'worker123' },
     customer: { email: 'customer@ductless.com', password: 'customer123' },
   };
 
