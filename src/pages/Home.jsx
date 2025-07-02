@@ -15,7 +15,7 @@ const Home = ({ user, onLogin }) => {
       <header className="bg-[#2d4a80] text-white px-6 py-4 shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-xl font-bold">
-            <span className="text-white font-semibold">Ductless</span>
+            <span className="text-white font-semibold">Dustless</span>
             <span className="text-white font-extrabold">Solutions GTA</span>
           </div>
           <nav className="space-x-6 hidden md:flex text-sm">
