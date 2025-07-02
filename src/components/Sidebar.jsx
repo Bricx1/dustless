@@ -37,7 +37,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     <div className="w-64 bg-slate-800 text-white h-screen flex flex-col justify-between">
       <div>
         <div className="p-6 border-b border-slate-700">
-          <h1 className="text-xl font-bold">Ductless Solution</h1>
+          <h1 className="text-xl font-bold">Dustless Solution</h1>
           <p className="text-sm text-slate-400">Service management</p>
         </div>
 
