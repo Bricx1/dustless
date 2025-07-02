@@ -43,7 +43,7 @@ const Header = ({ title }) => {
 
           {/* 👷 Workers Button */}
           <button
-            onClick={() => navigate('/workers')}
+            onClick={() => navigate('/employeetracker')}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           >
             👷 Workers
