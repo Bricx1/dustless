@@ -1,232 +1,458 @@
 import React, { useState } from 'react';
-import { Thermometer, Zap, Wind, Shield, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { 
+  User, 
+  Settings, 
+  Thermometer, 
+  Power, 
+  Wifi, 
+  Shield, 
+  Users, 
+  Activity, 
+  AlertTriangle,
+  CheckCircle,
+  XCircle,
+  Edit3,
+  Save,
+  X,
+  Plus,
+  Trash2
+} from 'lucide-react';
 
 const DuctlessProfile = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [expandedSpec, setExpandedSpec] = useState(null);
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [editingProfile, setEditingProfile] = useState(false);
+  const [adminProfile, setAdminProfile] = useState({
+    name: 'John Anderson',
+    email: 'j.anderson@hvactech.com',
+    role: 'System Administrator',
+    department: 'HVAC Operations',
+    phone: '+1 (555) 123-4567',
+    lastLogin: '2025-07-03 09:30 AM'
+  });
 
-  const specifications = [
+  const [systems, setSystems] = useState([
     {
-      category: 'Cooling Capacity',
-      value: '12,000 BTU/h',
-      detail: 'Efficient cooling for rooms up to 550 sq ft'
+      id: 1,
+      name: 'Office Building A - Floor 2',
+      status: 'online',
+      temperature: 72,
+      setPoint: 72,
+      mode: 'cooling',
+      lastMaintenance: '2025-06-15',
+      efficiency: 94
     },
     {
-      category: 'Heating Capacity',
-      value: '13,600 BTU/h',
-      detail: 'Reliable heating down to -13°F outdoor temperature'
+      id: 2,
+      name: 'Conference Room Complex',
+      status: 'maintenance',
+      temperature: 68,
+      setPoint: 70,
+      mode: 'heating',
+      lastMaintenance: '2025-07-01',
+      efficiency: 88
     },
     {
-      category: 'SEER Rating',
-      value: '22',
-      detail: 'High efficiency rating for energy savings'
-    },
-    {
-      category: 'HSPF Rating',
-      value: '10',
-      detail: 'Excellent heating seasonal performance'
-    },
-    {
-      category: 'Noise Level',
-      value: '19 dB',
-      detail: 'Whisper-quiet operation'
-    },
-    {
-      category: 'Refrigerant',
-      value: 'R-410A',
-      detail: 'Environmentally friendly refrigerant'
+      id: 3,
+      name: 'Warehouse Section C',
+      status: 'offline',
+      temperature: 75,
+      setPoint: 70,
+      mode: 'cooling',
+      lastMaintenance: '2025-05-20',
+      efficiency: 0
     }
-  ];
+  ]);
 
-  const features = [
-    {
-      icon: <Wind className="w-6 h-6" />,
-      title: 'Multi-Zone Control',
-      description: 'Independent temperature control for each room'
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: 'Energy Efficient',
-      description: 'Up to 40% more efficient than traditional systems'
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      title: 'Advanced Filtration',
-      description: 'Multi-stage filtration removes allergens and particles'
-    },
-    {
-      icon: <Thermometer className="w-6 h-6" />,
-      title: 'Smart Controls',
-      description: 'WiFi enabled with smartphone app control'
-    }
-  ];
+  const [users, setUsers] = useState([
+    { id: 1, name: 'Sarah Mitchell', role: 'Technician', status: 'active', lastActive: '2025-07-03' },
+    { id: 2, name: 'Mike Rodriguez', role: 'Supervisor', status: 'active', lastActive: '2025-07-02' },
+    { id: 3, name: 'Emma Chen', role: 'Operator', status: 'inactive', lastActive: '2025-06-28' }
+  ]);
 
-  const toggleSpec = (index) => {
-    setExpandedSpec(expandedSpec === index ? null : index);
+  const handleProfileSave = () => {
+    setEditingProfile(false);
+    // Save profile logic would go here
   };
 
-  return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-      <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8">
+  const getStatusColor = (status) => {
+    switch(status) {
+      case 'online': return 'text-green-600 bg-green-100';
+      case 'offline': return 'text-red-600 bg-red-100';
+      case 'maintenance': return 'text-yellow-600 bg-yellow-100';
+      default: return 'text-gray-600 bg-gray-100';
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch(status) {
+      case 'online': return <CheckCircle className="w-4 h-4" />;
+      case 'offline': return <XCircle className="w-4 h-4" />;
+      case 'maintenance': return <AlertTriangle className="w-4 h-4" />;
+      default: return <AlertTriangle className="w-4 h-4" />;
+    }
+  };
+
+  const renderDashboard = () => (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Premium Dustless Mini-Split</h1>
-              <p className="text-blue-100 text-lg">Model: DS-12K-PRO</p>
-              <div className="flex items-center mt-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-                <span className="ml-2 text-blue-100">4.8/5 (247 reviews)</span>
+              <p className="text-sm text-gray-600">Total Systems</p>
+              <p className="text-3xl font-bold text-blue-600">{systems.length}</p>
+            </div>
+            <Thermometer className="w-8 h-8 text-blue-600" />
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Online Systems</p>
+              <p className="text-3xl font-bold text-green-600">
+                {systems.filter(s => s.status === 'online').length}
+              </p>
+            </div>
+            <CheckCircle className="w-8 h-8 text-green-600" />
+          </div>
+        </div>
+        
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Avg Efficiency</p>
+              <p className="text-3xl font-bold text-purple-600">
+                {Math.round(systems.reduce((acc, s) => acc + s.efficiency, 0) / systems.length)}%
+              </p>
+            </div>
+            <Activity className="w-8 h-8 text-purple-600" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h3 className="text-lg font-semibold">System Status Overview</h3>
+        </div>
+        <div className="p-6">
+          <div className="space-y-4">
+            {systems.map(system => (
+              <div key={system.id} className="flex items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center space-x-4">
+                  <div className={`flex items-center space-x-2 px-3 py-1 rounded-full text-sm ${getStatusColor(system.status)}`}>
+                    {getStatusIcon(system.status)}
+                    <span className="capitalize">{system.status}</span>
+                  </div>
+                  <div>
+                    <p className="font-medium">{system.name}</p>
+                    <p className="text-sm text-gray-600">{system.temperature}°F | {system.mode}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-600">Efficiency</p>
+                  <p className="font-semibold">{system.efficiency}%</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderProfile = () => (
+    <div className="bg-white rounded-lg shadow">
+      <div className="p-6 border-b flex justify-between items-center">
+        <h3 className="text-lg font-semibold">Admin Profile</h3>
+        {!editingProfile ? (
+          <button
+            onClick={() => setEditingProfile(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Edit3 className="w-4 h-4" />
+            <span>Edit Profile</span>
+          </button>
+        ) : (
+          <div className="flex space-x-2">
+            <button
+              onClick={handleProfileSave}
+              className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
+              <Save className="w-4 h-4" />
+              <span>Save</span>
+            </button>
+            <button
+              onClick={() => setEditingProfile(false)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+              <X className="w-4 h-4" />
+              <span>Cancel</span>
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="p-6">
+        <div className="flex items-center space-x-6 mb-6">
+          <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center">
+            <User className="w-10 h-10 text-white" />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold">{adminProfile.name}</h2>
+            <p className="text-gray-600">{adminProfile.role}</p>
+            <p className="text-sm text-gray-500">Last login: {adminProfile.lastLogin}</p>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+              {editingProfile ? (
+                <input
+                  type="text"
+                  value={adminProfile.name}
+                  onChange={(e) => setAdminProfile({...adminProfile, name: e.target.value})}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              ) : (
+                <p className="text-gray-900">{adminProfile.name}</p>
+              )}
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              {editingProfile ? (
+                <input
+                  type="email"
+                  value={adminProfile.email}
+                  onChange={(e) => setAdminProfile({...adminProfile, email: e.target.value})}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              ) : (
+                <p className="text-gray-900">{adminProfile.email}</p>
+              )}
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+              {editingProfile ? (
+                <input
+                  type="tel"
+                  value={adminProfile.phone}
+                  onChange={(e) => setAdminProfile({...adminProfile, phone: e.target.value})}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              ) : (
+                <p className="text-gray-900">{adminProfile.phone}</p>
+              )}
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+              <p className="text-gray-900">{adminProfile.role}</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+              {editingProfile ? (
+                <input
+                  type="text"
+                  value={adminProfile.department}
+                  onChange={(e) => setAdminProfile({...adminProfile, department: e.target.value})}
+                  className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              ) : (
+                <p className="text-gray-900">{adminProfile.department}</p>
+              )}
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Account Status</label>
+              <span className="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-sm bg-green-100 text-green-600">
+                <CheckCircle className="w-4 h-4" />
+                <span>Active</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderUsers = () => (
+    <div className="bg-white rounded-lg shadow">
+      <div className="p-6 border-b flex justify-between items-center">
+        <h3 className="text-lg font-semibold">User Management</h3>
+        <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <Plus className="w-4 h-4" />
+          <span>Add User</span>
+        </button>
+      </div>
+      <div className="p-6">
+        <div className="space-y-4">
+          {users.map(user => (
+            <div key={user.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="font-medium">{user.name}</p>
+                  <p className="text-sm text-gray-600">{user.role}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="text-right">
+                  <p className="text-sm text-gray-600">Last Active</p>
+                  <p className="text-sm">{user.lastActive}</p>
+                </div>
+                <span className={`px-3 py-1 rounded-full text-sm ${
+                  user.status === 'active' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'
+                }`}>
+                  {user.status}
+                </span>
+                <button className="text-red-600 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
             </div>
-            <div className="text-right">
-              <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
-                <div className="text-2xl font-bold">$2,899</div>
-                <div className="text-sm text-blue-100">Installation included</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderSettings = () => (
+    <div className="space-y-6">
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h3 className="text-lg font-semibold">System Settings</h3>
+        </div>
+        <div className="p-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Automatic Maintenance Alerts</p>
+              <p className="text-sm text-gray-600">Send notifications when maintenance is due</p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Energy Efficiency Monitoring</p>
+              <p className="text-sm text-gray-600">Track and optimize energy usage</p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" defaultChecked />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
+          
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Remote Access</p>
+              <p className="text-sm text-gray-600">Allow remote system control</p>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" className="sr-only peer" />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <h3 className="text-lg font-semibold">Security Settings</h3>
+        </div>
+        <div className="p-6 space-y-4">
+          <button className="w-full text-left p-4 border rounded-lg hover:bg-gray-50">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">Change Password</p>
+                <p className="text-sm text-gray-600">Update your admin password</p>
+              </div>
+              <Shield className="w-5 h-5 text-gray-400" />
+            </div>
+          </button>
+          
+          <button className="w-full text-left p-4 border rounded-lg hover:bg-gray-50">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium">Two-Factor Authentication</p>
+                <p className="text-sm text-gray-600">Add an extra layer of security</p>
+              </div>
+              <Shield className="w-5 h-5 text-gray-400" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <Thermometer className="w-8 h-8 text-blue-600" />
+                <h1 className="text-xl font-bold text-gray-900">DuctlessAdmin</h1>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <Wifi className="w-5 h-5 text-green-600" />
+                <span className="text-sm text-gray-600">Connected</span>
+              </div>
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-white" />
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex border-b border-gray-200">
-          {['overview', 'specifications', 'features'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-4 px-6 text-center font-medium capitalize transition-colors ${
-                activeTab === tab
-                  ? 'border-b-2 border-blue-600 text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Content */}
-        <div className="p-8">
-          {activeTab === 'overview' && (
-            <div className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">System Overview</h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    Experience year-round comfort with our premium dustless mini-split system. 
-                    Featuring inverter technology, this system provides precise temperature control 
-                    while maintaining exceptional energy efficiency.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-green-50 p-4 rounded-lg">
-                      <div className="text-2xl font-bold text-green-600">22</div>
-                      <div className="text-sm text-green-700">SEER Rating</div>
-                    </div>
-                    <div className="bg-blue-50 p-4 rounded-lg">
-                      <div className="text-2xl font-bold text-blue-600">12K</div>
-                      <div className="text-sm text-blue-700">BTU Capacity</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <h4 className="font-semibold text-gray-900 mb-4">Key Benefits</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></div>
-                      <span className="text-gray-700">No dustwork required - easy installation</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></div>
-                      <span className="text-gray-700">Zone-specific climate control</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></div>
-                      <span className="text-gray-700">Significant energy savings</span>
-                    </li>
-                    <li className="flex items-start">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></div>
-                      <span className="text-gray-700">Whisper-quiet operation</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'specifications' && (
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h3>
-              <div className="space-y-3">
-                {specifications.map((spec, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg">
-                    <button
-                      onClick={() => toggleSpec(index)}
-                      className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
-                    >
-                      <div className="flex items-center justify-between flex-1">
-                        <span className="font-medium text-gray-900">{spec.category}</span>
-                        <span className="text-blue-600 font-semibold">{spec.value}</span>
-                      </div>
-                      {expandedSpec === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-400 ml-4" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400 ml-4" />
-                      )}
-                    </button>
-                    {expandedSpec === index && (
-                      <div className="px-4 pb-4 text-gray-600">
-                        {spec.detail}
-                      </div>
-                    )}
-                  </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-64 flex-shrink-0">
+            <nav className="bg-white rounded-lg shadow p-4">
+              <div className="space-y-2">
+                {[
+                  { id: 'dashboard', label: 'Dashboard', icon: Activity },
+                  { id: 'profile', label: 'Profile', icon: User },
+                  { id: 'users', label: 'Users', icon: Users },
+                  { id: 'settings', label: 'Settings', icon: Settings }
+                ].map(item => (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                      activeTab === item.id
+                        ? 'bg-blue-600 text-white'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </button>
                 ))}
               </div>
-            </div>
-          )}
+            </nav>
+          </div>
 
-          {activeTab === 'features' && (
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced Features</h3>
-              <div className="grid md:grid-cols-2 gap-6">
-                {features.map((feature, index) => (
-                  <div key={index} className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl hover:shadow-lg transition-shadow">
-                    <div className="flex items-start space-x-4">
-                      <div className="bg-blue-100 p-3 rounded-lg">
-                        <div className="text-blue-600">
-                          {feature.icon}
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">{feature.title}</h4>
-                        <p className="text-gray-600">{feature.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h4 className="font-semibold text-yellow-800 mb-2">Professional Installation Included</h4>
-                <p className="text-yellow-700">
-                  Our certified technicians will handle the complete installation process, 
-                  including electrical connections, refrigerant lines, and system testing. 
-                  5-year warranty on parts and labor included.
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Action Buttons */}
-        <div className="bg-gray-50 px-8 py-6 flex flex-col sm:flex-row gap-4">
-          <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-            Get Free Quote
-          </button>
-          <button className="flex-1 bg-white text-blue-600 py-3 px-6 rounded-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition-colors">
-            Schedule Consultation
-          </button>
+          <div className="flex-1">
+            {activeTab === 'dashboard' && renderDashboard()}
+            {activeTab === 'profile' && renderProfile()}
+            {activeTab === 'users' && renderUsers()}
+            {activeTab === 'settings' && renderSettings()}
+          </div>
         </div>
       </div>
     </div>

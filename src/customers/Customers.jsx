@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import './HomePage.css';
 
-const Customer = () => {
+
+const Customers = () => {
   useEffect(() => {
     const header = document.querySelector('header');
     const handleScroll = () => {

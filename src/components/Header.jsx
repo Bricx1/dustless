@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Bell, User } from 'lucide-react';
+import { Search, Bell, User, CalendarDays } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({ title }) => {
@@ -41,12 +41,21 @@ const Header = ({ title }) => {
             />
           </div>
 
-          {/* 👷 Workers Button */}
+          {/* Workers Button */}
           <button
             onClick={() => navigate('/employeetracker')}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           >
             👷 Workers
+          </button>
+
+          {/* Calendar Icon */}
+          <button
+            onClick={() => navigate('/comprehensivecalendar')}
+            className="p-2 rounded-full hover:bg-gray-100"
+            title="Calendar"
+          >
+            <CalendarDays className="text-gray-500 hover:text-gray-700" size={20} />
           </button>
 
           {/* Notifications */}

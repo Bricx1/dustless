@@ -11,7 +11,7 @@ import Settings from './pages/Forms/Settings';
 import Upgrades from './pages/Forms/Upgrades';
 import Maintenance from './pages/Forms/Maintenance';
 import EmployeeTracker from './pages/Forms/EmployeeTracker';
-
+import ComprehensiveCalendar from './pages/ComprehensiveCalendar';
 const App = () => {
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem("ductlessUser");
@@ -43,6 +43,7 @@ const App = () => {
         <Route path="/services/upgrades" element={<Upgrades />} />
         <Route path="/services/maintenance" element={<Maintenance />} />
         <Route path="/employeetracker" element={<EmployeeTracker />} />
+        <Route path="/comprehensiveCalendar" element={<ComprehensiveCalendar  />} />
         
       </Routes>
     </Router>
