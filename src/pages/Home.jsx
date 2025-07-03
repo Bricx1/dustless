@@ -369,7 +369,7 @@ const Home = () => {
               <h4 className="text-white font-semibold mb-4">Service Areas</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>Toronto</li>
-                <li>Mississauga</li>
+                <li>Mississauga</li>  
                 <li>Brampton</li>
                 <li>Greater Toronto Area</li>
               </ul>
