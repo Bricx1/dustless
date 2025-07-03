@@ -28,22 +28,32 @@ const App = () => {
     setUser(null);
   };
 
+  // Protected Route Wrapper
+  const ProtectedRoute = ({ element }) => {
+    return user ? element : <Navigate to="/login" replace />;
+  };
+
   return (
     <Router>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home user={user} onLogin={handleLogin} />} />
         <Route path="/home" element={<Home user={user} onLogin={handleLogin} />} />
         <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/services/installation" element={<InstallationForm />} />
-        <Route path="/MyProfile" element={<DuctlessProfile />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/services/repair" element={<Repair />} />
-        <Route path="/services/upgrades" element={<Upgrades />} />
-        <Route path="/services/maintenance" element={<Maintenance />} />
-        <Route path="/employeetracker" element={<EmployeeTracker />} />
-        
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" replace /> : <LoginForm onLogin={handleLogin} />}
+        />
+
+        {/* Protected Routes */}
+        <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+        <Route path="/services/installation" element={<ProtectedRoute element={<InstallationForm />} />} />
+        <Route path="/services/repair" element={<ProtectedRoute element={<Repair />} />} />
+        <Route path="/services/upgrades" element={<ProtectedRoute element={<Upgrades />} />} />
+        <Route path="/services/maintenance" element={<ProtectedRoute element={<Maintenance />} />} />
+        <Route path="/MyProfile" element={<ProtectedRoute element={<DuctlessProfile />} />} />
+        <Route path="/settings" element={<ProtectedRoute element={<Settings />} />} />
+        <Route path="/employeetracker" element={<ProtectedRoute element={<EmployeeTracker />} />} />
       </Routes>
     </Router>
   );
