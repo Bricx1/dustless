@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Star, Thermometer, Wind, Zap, Shield, Clock, Users, Award, CheckCircle } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [activeService, setActiveService] = useState(0);
-
+   const navigate = useNavigate();
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -90,10 +90,25 @@ const Home = () => {
               <a href="#services" className="text-white hover:text-blue-400 transition-colors">Services</a>
               <a href="#about" className="text-white hover:text-blue-400 transition-colors">About</a>
               <a href="#contact" className="text-white hover:text-blue-400 transition-colors">Contact</a>
+              
             </div>
-            <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg">
-              Get Quote
-            </button>
+             <button
+    onClick={() => navigate("/login")}
+    className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
+  >
+    Login
+  </button>
+  <button
+    onClick={() => navigate("/register")}
+    className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
+  >
+    Register
+  </button>
+  <button
+    className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
+  >
+    Get Quote
+  </button>
           </div>
         </div>
       </nav>
