@@ -31,11 +31,18 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        {/* Default route shows Home page */}
         <Route path="/" element={<Home user={user} onLogin={handleLogin} />} />
         <Route path="/home" element={<Home user={user} onLogin={handleLogin} />} />
+
+        {/* Redirect to dashboard if already logged in */}
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" replace /> : <LoginForm onLogin={handleLogin} />}
+        />
+
         <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
-         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/services/installation" element={<InstallationForm />} />
         <Route path="/MyProfile" element={<DuctlessProfile />} />
         <Route path="/settings" element={<Settings />} />
@@ -43,7 +50,6 @@ const App = () => {
         <Route path="/services/upgrades" element={<Upgrades />} />
         <Route path="/services/maintenance" element={<Maintenance />} />
         <Route path="/employeetracker" element={<EmployeeTracker />} />
-        
       </Routes>
     </Router>
   );
