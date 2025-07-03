@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 import Appointments from './Appointments';
 import Services from './Services';
-import Leads from './Leads';
+import Leads from './DuctlessLeadForm';
 import Analytics from './Analytics';
 
 const DashboardHome = () => (
