@@ -21,6 +21,11 @@ const Analytics = () => {
       activeProjects: Math.round(23 * Math.sqrt(multiplier)),
       satisfaction: (4.7 + Math.random() * 0.3).toFixed(1),
       avgProjectValue: Math.round(10850 + Math.random() * 2000),
+      topCustomers: [
+        { name: 'Bryan Davis', orders: Math.round(12 * multiplier) },
+        { name: 'Sarah Johnson', orders: Math.round(9 * multiplier) },
+        { name: 'Mike Wilson', orders: Math.round(7 * multiplier) },
+      ],
     });
   };
 
@@ -140,6 +145,26 @@ const Analytics = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ChartCard title="Project Status Overview" chartRef={projectStatusRef} />
         <ChartCard title="Geographic Performance" chartRef={geoRef} />
+      </div>
+
+      <div className="bg-white shadow rounded-2xl p-6 mt-8">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Top Customers</h3>
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="text-left border-b">
+              <th className="py-2">Customer</th>
+              <th className="py-2 text-right">Orders</th>
+            </tr>
+          </thead>
+          <tbody>
+            {metrics.topCustomers?.map((c, i) => (
+              <tr key={i} className="border-b last:border-0">
+                <td className="py-2">{c.name}</td>
+                <td className="py-2 text-right">{c.orders}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

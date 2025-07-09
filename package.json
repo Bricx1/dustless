@@ -18,7 +18,10 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.15.4",
     "sweetalert2": "^11.22.2",
-    "web-vitals": "^5.0.3"
+    "web-vitals": "^5.0.3",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "dotenv": "^16.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
@@ -29,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node server/server.js"
   },
   "browserslist": {
     "production": [

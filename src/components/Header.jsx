@@ -19,7 +19,8 @@ const Header = ({ title }) => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("tikangToken");
+    // Use the same key that was set on login so the user is actually logged out
+    localStorage.removeItem("ductlessUser");
     navigate('/login');
   };
 
