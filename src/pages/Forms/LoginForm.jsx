@@ -43,7 +43,12 @@ const LoginForm = () => {
         showNotification(`Welcome ${selectedRole}! Redirecting to dashboard...`, 'success');
 
         setTimeout(() => {
-          navigate("/dashboard");
+          // Redirect based on role
+          if (selectedRole === "customer") {
+            navigate("/customer-services-portal");
+          } else {
+            navigate("/dashboard");
+          }
         }, 1000);
       } else {
         showNotification('Invalid credentials. Please try again.', 'error');
@@ -126,7 +131,7 @@ const LoginForm = () => {
               type="button"
               onClick={() =>
                 alert(
-                  `Demo Credentials:\n\nAdmin: admin@ductless.com / admin123\nWorker: worker@ductless.com / worker123\nCustomer: customer@ductless.com / customer123`
+                  `Demo Credentials:\n\nAdmin: Skhan@compassionatehhs.org / admin123\nWorker: drsohail13@gmail.com / worker123\nCustomer: customer@ductless.com / customer123`
                 )
               }
               className="text-sm text-indigo-600 hover:underline"
@@ -145,7 +150,7 @@ const LoginForm = () => {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>Customer Support: <a href="tel:+1234567890" className="text-indigo-600 hover:underline">(123) 456-7890</a></p>
-          <p>Don't have an account? <a href="/register" className="text-indigo-600 hover:underline">Create one </a> </p>
+          <p>Don't have an account? <a href="/register" className="text-indigo-600 hover:underline">Create one</a></p>
         </div>
       </div>
     </div>

@@ -19,6 +19,9 @@
     "recharts": "^2.15.4",
     "sweetalert2": "^11.22.2",
     "web-vitals": "^5.0.3"
+    
+  
+    
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
