@@ -18,7 +18,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       confirmButtonText: 'Yes, logout',
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem('tikangToken'); // or your auth token key
+        // Match the login storage key so logout fully clears auth information
+        localStorage.removeItem('ductlessUser');
         Swal.fire('Logged out!', 'You have been logged out.', 'success');
         navigate('/login');
       }

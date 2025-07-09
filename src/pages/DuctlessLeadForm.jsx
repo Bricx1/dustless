@@ -93,12 +93,21 @@ export default function DuctlessLeadForm() {
           <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
-          
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Thank You!</h2>
+
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">Thank You, {formData.firstName}!</h2>
           <p className="text-gray-600 mb-6 text-lg">
             We've received your information and a Ductless Solution specialist will contact you within 24 hours.
           </p>
-          
+
+          <a
+            href="/sample-certificate.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg mb-6 hover:bg-green-700 transition-colors"
+          >
+            View Sample Certificate
+          </a>
+
           <div className="bg-blue-50 rounded-lg p-4 mb-6">
             <h3 className="font-semibold text-blue-800 mb-2">What happens next?</h3>
             <ul className="text-sm text-blue-700 space-y-1">
@@ -107,7 +116,7 @@ export default function DuctlessLeadForm() {
               <li>• Energy savings analysis</li>
             </ul>
           </div>
-          
+
           <button
             onClick={handleNewLead}
             className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"

@@ -45,6 +45,25 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## Backend API
+
+This project now includes a small Express server with a MySQL connection. The server exposes an example endpoint for retrieving the top customers. Configure your database credentials via the following environment variables:
+
+```
+MYSQL_HOST
+MYSQL_USER
+MYSQL_PASSWORD
+MYSQL_DATABASE
+```
+
+To start the server run:
+
+```bash
+npm run server
+```
+
+The API will be available by default at `http://localhost:4000`.
+
 ### Code Splitting
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
